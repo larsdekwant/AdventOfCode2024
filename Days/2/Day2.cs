@@ -65,7 +65,7 @@ namespace AdventOfCode
             return count;
         }
 
-        public static int CheckReportPart2(List<int> report, int dampener = 1)
+        public static int CheckReportPart2(List<int> report)
         {
             int mult = 1;
             int diff0 = report[0] - report[1];
@@ -75,16 +75,13 @@ namespace AdventOfCode
             {
                 int diff = report[i] - report[i + 1];
                 if (diff * mult < 1 || diff * mult > 3)
-                {                  
-                    if (dampener > 0)
-                    {
-                        // if dampener still available, retry with removal of levels which can cause a report to be unsafe
-                        int rm1 = CheckReportPart2(report.Where((v, id) => id != i).ToList(), 0);
-                        int rm2 = CheckReportPart2(report.Where((v, id) => id != i + 1).ToList(), 0);
-                        int rm3 = CheckReportPart2(report.Where((v, id) => id != i - 1).ToList(), 0);
-
-                        if (rm1 + rm2 + rm3> 0) return 1;
-                    }
+                {                                     
+                    // try to see if it is fixable by removal of a level
+                    int rm1 = CheckReport(report.Where((v, id) => id != i).ToList());
+                    int rm2 = CheckReport(report.Where((v, id) => id != i + 1).ToList());
+                    int rm3 = CheckReport(report.Where((v, id) => id != i - 1).ToList());
+                    if (rm1 + rm2 + rm3 > 0) return 1;
+                   
                     return 0;
                 }
             }
