@@ -27,9 +27,6 @@ namespace AdventOfCode
         public static int RunPart1()
         {
             puzzle = File.ReadLines("../../../Days/4/InputPart1.txt").ToArray();
-
-            Stopwatch stopwatch = Stopwatch.StartNew();
-
             rows = puzzle.Length;
             cols = puzzle[0].Length;
 
@@ -46,10 +43,6 @@ namespace AdventOfCode
                     count += CountDirection(i, j, LEFT,     DOWN    );
                     count += CountDirection(i, j, LEFT,     UP      );
                 }
-            
-            stopwatch.Stop();
-            Console.WriteLine($"Time elapsed (ms): {stopwatch.ElapsedMilliseconds}");
-
             return count;
         }
 
@@ -74,9 +67,6 @@ namespace AdventOfCode
         public static int RunPart2()
         {
             puzzle = File.ReadLines("../../../Days/4/InputPart2.txt").ToArray();
-
-            Stopwatch stopwatch = Stopwatch.StartNew();
-
             rows = puzzle.Length;
             cols = puzzle[0].Length;
 
@@ -84,11 +74,7 @@ namespace AdventOfCode
             // Can never start at outer layer, so move bounds in by 1 for efficiency
             for (int i = 1; i < rows - 1; i++)
                 for (int j = 1; j < cols - 1; j++)               
-                    count += CountCross(i, j);               
-
-            stopwatch.Stop();
-            Console.WriteLine($"Time elapsed (ms): {stopwatch.ElapsedMilliseconds}");
-
+                    count += CountCross(i, j);
             return count;
         }
 
