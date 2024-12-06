@@ -57,7 +57,7 @@ namespace AdventOfCode
 
         // Walk the guard starting from a certain position into a certain direction.
         // Ends when guard goes out of bounds, or enters a loop.
-        private (IEnumerable<(int, int)> visited, int loop) Move(int gX, int gY, int gDx, int gDy)
+        private (IEnumerable<(int, int)> visited, int loop) Move(int x, int y, int dx, int dy)
         {
             HashSet<(int, int, int, int)> visited = new HashSet<(int, int, int, int)>();
 
@@ -65,14 +65,14 @@ namespace AdventOfCode
             while (true)
             {
                 // Looped back around to a tile AND direction that is already visited.
-                if (!visited.Add((gX, gY, gDx, gDy)))
+                if (!visited.Add((x, y, dx, dy)))
                 {
                     looped = 1;
                     break;
                 }
 
-                int nextX = gX + gDx;
-                int nextY = gY + gDy;
+                int nextX = x + dx;
+                int nextY = y + dy;
 
                 // Moves out of bounds, done.
                 if (nextX < 0 || nextX >= cols || nextY < 0 || nextY >= rows) break;
@@ -80,15 +80,15 @@ namespace AdventOfCode
                 // Rotate by 90 degrees if obstacle ahead
                 if (map[nextX, nextY] == '#')
                 {
-                    int temp = gDy;
-                    gDy = gDx;
-                    gDx = -temp;
+                    int temp = dy;
+                    dy = dx;
+                    dx = -temp;
                     continue;
                 }
 
                 // Move into direction
-                gX += gDx;
-                gY += gDy;
+                x += dx;
+                y += dy;
             }
 
             // Select only tiles with distinct x,y coordinates.
