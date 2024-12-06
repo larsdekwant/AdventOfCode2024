@@ -1,21 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
-using System.Diagnostics.Tracing;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.AccessControl;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace AdventOfCode
 {
-    static class Day5
+    class Day5 : IDay
     {
-        public static int RunPart1()
+        public int RunPart1()
         {
             var lines = File.ReadLines("../../../Days/5/InputPart1.txt").ToArray();
 
@@ -46,7 +35,7 @@ namespace AdventOfCode
             return total;
         }
 
-        public static int CheckPageOrder(Dictionary<string, List<string>> orderMap, string[] update)
+        private int CheckPageOrder(Dictionary<string, List<string>> orderMap, string[] update)
         {
             for (int i = 0; i < update.Length; i++)
             {
@@ -67,7 +56,7 @@ namespace AdventOfCode
             return int.Parse(update[update.Length / 2]);
         }
         
-        public static int RunPart2()
+        public int RunPart2()
         {
             var lines = File.ReadLines("../../../Days/5/InputPart1.txt").ToArray();
 
@@ -98,7 +87,7 @@ namespace AdventOfCode
             return total;
         }
 
-        public static int CheckAndFixPageOrder(Dictionary<string, List<string>> orderMap, string[] update, bool swappedPages = false)
+        private int CheckAndFixPageOrder(Dictionary<string, List<string>> orderMap, string[] update, bool swappedPages = false)
         {
             for (int i = 0; i < update.Length; i++)
             {

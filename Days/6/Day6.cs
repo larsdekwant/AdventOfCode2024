@@ -1,33 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
-using System.Diagnostics.Tracing;
-using System.Globalization;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Security.AccessControl;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml.Schema;
 
 namespace AdventOfCode
 {
-    static class Day6
+    class Day6 : IDay
     {
         const int STRAIGHT = 0;
         const int UP = -1;
 
-        static int rows;
-        static int cols;
-        static char[,]? map = null;
+        readonly int rows;
+        readonly int cols;
+        char[,] map;
 
-        static int startX;
-        static int startY;
+        readonly int startX;
+        readonly int startY;
 
-        public static void ReadMap()
+        public Day6()
         {
             string[] input = File.ReadLines("../../../Days/6/InputPart1.txt").ToArray();
             rows = input.Length;
@@ -48,16 +35,13 @@ namespace AdventOfCode
                 }
         }
 
-        public static int RunPart1()
+        public int RunPart1()
         {
-            ReadMap();
             return Move(startX, startY, STRAIGHT, UP).visited.Count();
         }     
 
-        public static int RunPart2()
+        public int RunPart2()
         {
-            ReadMap();
-
             int loops = 0;
             foreach ((int x, int y) in Move(startX, startY, STRAIGHT, UP).visited.Skip(1))
             {
@@ -69,11 +53,11 @@ namespace AdventOfCode
             }
 
             return loops;
-        }
+        }        
 
         // Walk the guard starting from a certain position into a certain direction.
         // Ends when guard goes out of bounds, or enters a loop.
-        public static (IEnumerable<(int, int)> visited, int loop) Move(int gX, int gY, int gDx, int gDy)
+        private (IEnumerable<(int, int)> visited, int loop) Move(int gX, int gY, int gDx, int gDy)
         {
             HashSet<(int, int, int, int)> visited = new HashSet<(int, int, int, int)>();
 

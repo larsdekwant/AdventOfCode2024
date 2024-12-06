@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdventOfCode
 {
-    static class Day2
+    class Day2 : IDay
     {
-        public static int RunPart1()
+        public int RunPart1()
         {
             var lines = File.ReadLines("../../../Days/2/InputPart1.txt");
-
-            Stopwatch stopwatch = Stopwatch.StartNew();
 
             int count = 0;
             foreach (var line in lines)
@@ -24,13 +16,10 @@ namespace AdventOfCode
                 count += CheckReport(report);
             }
 
-            stopwatch.Stop();
-            Console.WriteLine($"Time elapsed (ms): {stopwatch.ElapsedMilliseconds}");
-
             return count;
         }
 
-        public static int CheckReport(List<int> report)
+        private int CheckReport(List<int> report)
         {
             int mult = 1;
             int diff0 = report[0] - report[1];
@@ -45,11 +34,9 @@ namespace AdventOfCode
             return 1;
         }
 
-        public static int RunPart2()
+        public int RunPart2()
         {
             var lines = File.ReadLines("../../../Days/2/InputPart2.txt");
-
-            Stopwatch stopwatch = Stopwatch.StartNew();
 
             int count = 0;
             foreach (var line in lines)
@@ -59,13 +46,10 @@ namespace AdventOfCode
                 count += CheckReportPart2(report);
             }
 
-            stopwatch.Stop();
-            Console.WriteLine($"Time elapsed (ms): {stopwatch.ElapsedMilliseconds}");
-
             return count;
         }
 
-        public static int CheckReportPart2(List<int> report)
+        private int CheckReportPart2(List<int> report)
         {
             int mult = 1;
             int diff0 = report[0] - report[1];

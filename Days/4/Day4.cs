@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
-using System.Diagnostics.Tracing;
-using System.Globalization;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace AdventOfCode
 {
-    static class Day4
+    class Day4 : IDay
     {
         const int STRAIGHT = 0;
         const int RIGHT = 1;       
@@ -20,11 +10,11 @@ namespace AdventOfCode
         const int UP = -1;
         const int DOWN = 1;
 
-        static string[] puzzle = Array.Empty<string>();
-        static int rows;
-        static int cols;
+        string[] puzzle = Array.Empty<string>();
+        int rows;
+        int cols;
 
-        public static int RunPart1()
+        public int RunPart1()
         {
             puzzle = File.ReadLines("../../../Days/4/InputPart1.txt").ToArray();
             rows = puzzle.Length;
@@ -46,7 +36,7 @@ namespace AdventOfCode
             return count;
         }
 
-        public static int CountDirection(int row, int col, int dirRow, int dirCol, string keyword = "XMAS")
+        private int CountDirection(int row, int col, int dirRow, int dirCol, string keyword = "XMAS")
         {
             for (int i = 0; i < keyword.Length; i++)
             {
@@ -64,7 +54,7 @@ namespace AdventOfCode
             return 1;
         }
 
-        public static int RunPart2()
+        public int RunPart2()
         {
             puzzle = File.ReadLines("../../../Days/4/InputPart2.txt").ToArray();
             rows = puzzle.Length;
@@ -78,7 +68,7 @@ namespace AdventOfCode
             return count;
         }
 
-        public static int CountCross(int row, int col)
+        private int CountCross(int row, int col)
         {
             int count = CountDirection(row + LEFT,  col + UP,   RIGHT, DOWN, "MAS")
                       + CountDirection(row + LEFT,  col + DOWN, RIGHT, UP,   "MAS")

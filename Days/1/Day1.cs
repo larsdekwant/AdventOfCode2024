@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdventOfCode
 {
-    static class Day1
+    class Day1 : IDay
     {
-        public static int RunPart1()
+        public int RunPart1()
         {
             var lines = File.ReadLines("../../../Days/1/InputPart1.txt");
-
-            Stopwatch stopwatch = Stopwatch.StartNew();
 
             List<int> left = new List<int>();
             List<int> right = new List<int>();
@@ -35,17 +27,12 @@ namespace AdventOfCode
                 count += Math.Abs(left[i] - right[i]);
             }
 
-            stopwatch.Stop();
-            Console.WriteLine($"Time elapsed (ms): {stopwatch.ElapsedMilliseconds}");
-
             return count;
         }
 
-        public static int RunPart2()
+        public int RunPart2()
         {
             var lines = File.ReadLines("../../../Days/1/InputPart2.txt");
-
-            Stopwatch stopwatch = Stopwatch.StartNew();
 
             List<int> left = new List<int>();
             List<int> right = new List<int>();
@@ -71,9 +58,6 @@ namespace AdventOfCode
                 if(rightCounter.TryGetValue(val, out int rCount))
                     count += val * rCount;
             }
-
-            stopwatch.Stop();
-            Console.WriteLine($"Time elapsed (ms): {stopwatch.ElapsedMilliseconds}");
 
             return count;
         }
