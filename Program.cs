@@ -4,15 +4,15 @@
     {
         static void Main(string[] args)
         {
-            IDay day = new Day6();
+            IDay<long> day = new Day7();
             Console.WriteLine(day.RunPart1());
             Console.WriteLine(day.RunPart2());
         }
     }
 
-    interface IDay
+    interface IDay<T>
     {
-        int RunPart1();
-        int RunPart2();
+        T RunPart1();
+        T RunPart2();
     }
 }

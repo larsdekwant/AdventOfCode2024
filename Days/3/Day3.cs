@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace AdventOfCode
 {
-    class Day3 : IDay
+    class Day3 : IDay<int>
     {
         public int RunPart1()
         {

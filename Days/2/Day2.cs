@@ -2,7 +2,7 @@
 
 namespace AdventOfCode
 {
-    class Day2 : IDay
+    class Day2 : IDay<int>
     {
         public int RunPart1()
         {

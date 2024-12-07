@@ -2,7 +2,7 @@
 
 namespace AdventOfCode
 {
-    class Day4 : IDay
+    class Day4 : IDay<int>
     {
         const int STRAIGHT = 0;
         const int RIGHT = 1;       
