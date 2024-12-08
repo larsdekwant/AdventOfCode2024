@@ -4,20 +4,26 @@ namespace AdventOfCode
 {
     class Day2 : IDay<int>
     {
-        public int RunPart1()
+
+        public int RunPart(int part)
         {
-            var lines = File.ReadLines("../../../Days/2/InputPart1.txt");
+            var lines = File.ReadLines($"../../../Days/2/InputPart{part}.txt");
 
             int count = 0;
             foreach (var line in lines)
             {
                 string[] nums = line.Split(" ", StringSplitOptions.RemoveEmptyEntries);
                 var report = nums.Select(int.Parse).ToList();
-                count += CheckReport(report);
+                count += part switch
+                {
+                    1 => CheckReport(report),
+                    2 => TryFixReport(report),
+                    _ => throw new ArgumentException("Not a valid part")
+                };
             }
 
             return count;
-        }
+        }       
 
         private int CheckReport(List<int> report)
         {
@@ -32,24 +38,9 @@ namespace AdventOfCode
             }
 
             return 1;
-        }
+        }       
 
-        public int RunPart2()
-        {
-            var lines = File.ReadLines("../../../Days/2/InputPart2.txt");
-
-            int count = 0;
-            foreach (var line in lines)
-            {
-                string[] nums = line.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-                var report = nums.Select(int.Parse).ToList();
-                count += CheckReportPart2(report);
-            }
-
-            return count;
-        }
-
-        private int CheckReportPart2(List<int> report)
+        private int TryFixReport(List<int> report)
         {
             int mult = 1;
             int diff0 = report[0] - report[1];
