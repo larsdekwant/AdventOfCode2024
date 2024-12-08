@@ -4,9 +4,9 @@ namespace AdventOfCode
 {
     class Day1 : IDay<int>
     {
-        public int RunPart1()
+        public int RunPart(int part)
         {
-            var lines = File.ReadLines("../../../Days/1/InputPart1.txt");
+            var lines = File.ReadLines($"../../../Days/1/InputPart{part}.txt");
 
             List<int> left = new List<int>();
             List<int> right = new List<int>();
@@ -18,6 +18,16 @@ namespace AdventOfCode
                 right.Add(int.Parse(nums[1]));
             }
 
+            return part switch
+            {
+                1 => TotalDistance(left, right),
+                2 => Similarity(left, right),
+                _ => throw new ArgumentException("Not a valid part")
+            };
+        }
+
+        private int TotalDistance(List<int> left, List<int> right)
+        {        
             left.Sort();
             right.Sort();
 
@@ -30,20 +40,8 @@ namespace AdventOfCode
             return count;
         }
 
-        public int RunPart2()
-        {
-            var lines = File.ReadLines("../../../Days/1/InputPart2.txt");
-
-            List<int> left = new List<int>();
-            List<int> right = new List<int>();
-
-            foreach (var line in lines)
-            {
-                string[] nums = line.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-                left.Add(int.Parse(nums[0]));
-                right.Add(int.Parse(nums[1]));
-            }
-
+        private int Similarity(List<int> left, List<int> right)
+        {           
             Dictionary<int, int> rightCounter = new Dictionary<int, int>();
             foreach(int val in right) { 
                 if(!rightCounter.TryAdd(val, 1))
