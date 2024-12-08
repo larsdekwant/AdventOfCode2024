@@ -5,30 +5,36 @@ namespace AdventOfCode
 {
     class Day3 : IDay<int>
     {
-        public int RunPart1()
+        private Regex MulPattern = new Regex("mul\\(([0-9]{1,3}),([0-9]{1,3})\\)");
+
+        public int RunPart(int part)
         {
-            var lines = File.ReadAllText("../../../Days/3/InputPart1.txt");
+            var input = File.ReadAllText($"../../../Days/3/InputPart{part}.txt");
 
-            Regex pattern = new Regex("mul\\(([0-9]{1,3}),([0-9]{1,3})\\)");
-
+            return part switch
+            {
+                1 => SumMultiplications(input),
+                2 => SumEnabledMultiplications(input),
+                _ => throw new ArgumentException("Not a valid part")
+            };
+        }
+        private int SumMultiplications(string input)
+        {
             int total = 0;
-            foreach (Match m in pattern.Matches(lines))           
+            foreach (Match m in MulPattern.Matches(input))           
                 total += (int.Parse(m.Groups[1].Value) * int.Parse(m.Groups[2].Value));
 
             return total;
         }
-       
-        public int RunPart2()
-        {
-            string lines = File.ReadAllText("../../../Days/3/InputPart2.txt");
 
+        private int SumEnabledMultiplications(string input)
+        {
             // Matches parts of the text between start/do() and don't()/end
             Regex doPattern = new Regex("(?:^|do\\(\\))(.*?)(?=(?:don't\\(\\))|$)", RegexOptions.Singleline);
-            Regex mulPattern = new Regex("mul\\(([0-9]{1,3}),([0-9]{1,3})\\)");
 
             int total = 0;
-            foreach (Match doMatch in doPattern.Matches(lines))            
-                foreach (Match mulMatch in mulPattern.Matches(doMatch.Groups[1].Value))                
+            foreach (Match doMatch in doPattern.Matches(input))            
+                foreach (Match mulMatch in MulPattern.Matches(doMatch.Groups[1].Value))                
                     total += (int.Parse(mulMatch.Groups[1].Value) * int.Parse(mulMatch.Groups[2].Value));
 
             return total;
