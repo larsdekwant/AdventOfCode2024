@@ -4,45 +4,51 @@ namespace AdventOfCode
 {
     class Day4 : IDay<int>
     {
-        const int STRAIGHT = 0;
-        const int RIGHT = 1;       
-        const int LEFT = -1;
-        const int UP = -1;
-        const int DOWN = 1;
+        const int STRAIGHT =  0;
+        const int RIGHT    =  1;       
+        const int LEFT     = -1;
+        const int UP       = -1;
+        const int DOWN     =  1;
 
-        string[] puzzle = Array.Empty<string>();
-        int rows;
-        int cols;
-
-        public int RunPart1()
+        public int RunPart(int part)
         {
-            puzzle = File.ReadLines("../../../Days/4/InputPart1.txt").ToArray();
-            rows = puzzle.Length;
-            cols = puzzle[0].Length;
+            string[] puzzle = File.ReadLines("../../../Days/4/InputPart1.txt").ToArray();
+            int rows = puzzle.Length;
+            int cols = puzzle[0].Length;
 
             int count = 0;
-            for (int i = 0; i < rows; i++)           
+            for (int i = 0; i < rows; i++)
                 for (int j = 0; j < cols; j++)
                 {
-                    count += CountDirection(i, j, RIGHT,    STRAIGHT);
-                    count += CountDirection(i, j, LEFT,     STRAIGHT);
-                    count += CountDirection(i, j, STRAIGHT, UP      );
-                    count += CountDirection(i, j, STRAIGHT, DOWN    );
-                    count += CountDirection(i, j, RIGHT,    DOWN    );
-                    count += CountDirection(i, j, RIGHT,    UP      );
-                    count += CountDirection(i, j, LEFT,     DOWN    );
-                    count += CountDirection(i, j, LEFT,     UP      );
+                    count += part switch
+                    {
+                        1 => CountCardinalDirections(puzzle, i, j),
+                        2 => CountCross(puzzle, i, j),
+                        _ => throw new ArgumentException("Not a valid part")
+                    };
                 }
             return count;
+        }       
+
+        private int CountCardinalDirections(string[] puzzle, int row, int col)
+        {
+            return CountDirection(puzzle, row, col, RIGHT,    STRAIGHT)
+                 + CountDirection(puzzle, row, col, LEFT,     STRAIGHT)
+                 + CountDirection(puzzle, row, col, STRAIGHT, UP      )
+                 + CountDirection(puzzle, row, col, STRAIGHT, DOWN    )
+                 + CountDirection(puzzle, row, col, RIGHT,    DOWN    )
+                 + CountDirection(puzzle, row, col, RIGHT,    UP      )
+                 + CountDirection(puzzle, row, col, LEFT,     DOWN    )
+                 + CountDirection(puzzle, row, col, LEFT,     UP      );
         }
 
-        private int CountDirection(int row, int col, int dirRow, int dirCol, string keyword = "XMAS")
+        private int CountDirection(string[] puzzle, int row, int col, int dirRow, int dirCol, string keyword = "XMAS")
         {
             for (int i = 0; i < keyword.Length; i++)
             {
                 // Bounds checks
-                if (row < 0 || row >= rows) return 0;
-                if (col < 0 || col >= cols) return 0;
+                if (row < 0 || row >= puzzle.Length) return 0;
+                if (col < 0 || col >= puzzle[0].Length) return 0;
 
                 // Check for the keyword
                 if (puzzle[row][col] != keyword[i]) return 0;
@@ -52,28 +58,15 @@ namespace AdventOfCode
             }
 
             return 1;
-        }
+        }       
 
-        public int RunPart2()
+        private int CountCross(string[] puzzle, int row, int col)
         {
-            puzzle = File.ReadLines("../../../Days/4/InputPart2.txt").ToArray();
-            rows = puzzle.Length;
-            cols = puzzle[0].Length;
-
-            int count = 0;
-            // Can never start at outer layer, so move bounds in by 1 for efficiency
-            for (int i = 1; i < rows - 1; i++)
-                for (int j = 1; j < cols - 1; j++)               
-                    count += CountCross(i, j);
-            return count;
-        }
-
-        private int CountCross(int row, int col)
-        {
-            int count = CountDirection(row + LEFT,  col + UP,   RIGHT, DOWN, "MAS")
-                      + CountDirection(row + LEFT,  col + DOWN, RIGHT, UP,   "MAS")
-                      + CountDirection(row + RIGHT, col + UP,   LEFT,  DOWN, "MAS")
-                      + CountDirection(row + RIGHT, col + DOWN, LEFT,  UP,   "MAS");
+            if (puzzle[row][col] != 'A') return 0;
+            int count = CountDirection(puzzle, row + LEFT,  col + UP,   RIGHT, DOWN, "MAS")
+                      + CountDirection(puzzle, row + LEFT,  col + DOWN, RIGHT, UP,   "MAS")
+                      + CountDirection(puzzle, row + RIGHT, col + UP,   LEFT,  DOWN, "MAS")
+                      + CountDirection(puzzle, row + RIGHT, col + DOWN, LEFT,  UP,   "MAS");
             return count == 2 ? 1 : 0;
         }
     }
