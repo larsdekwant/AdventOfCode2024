@@ -17,14 +17,14 @@ namespace AdventOfCode
             (int x, int y) start = (0,0);
 
             // Find guard starting position, and copy input into a mutable 2D char-array
-            for (int i = 0; i < rows; i++)
-                for (int j = 0; j < cols; j++)
+            for (int y = 0; y < rows; y++)
+                for (int x = 0; x < cols; x++)
                 {
-                    map[j, i] = input[i][j];
-                    if (input[i][j] != '.' && input[i][j] != '#')
+                    map[x, y] = input[y][x];
+                    if (input[y][x] != '.' && input[y][x] != '#')
                     {
-                        start.x = j;
-                        start.y = i;
+                        start.x = x;
+                        start.y = y;
                     }
                 }
 
