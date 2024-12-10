@@ -9,7 +9,7 @@ namespace AdventOfCode
 
         public int RunPart(int part)
         {
-            var input = File.ReadAllText($"../../../Days/3/InputPart{part}.txt");
+            var input = File.ReadAllText($"../../../Days/03/InputPart{part}.txt");
 
             return part switch
             {

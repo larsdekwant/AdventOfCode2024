@@ -7,7 +7,7 @@ namespace AdventOfCode
 
         public int RunPart(int part)
         {
-            var lines = File.ReadLines("../../../Days/5/InputPart1.txt").ToArray();
+            var lines = File.ReadLines("../../../Days/05/InputPart1.txt").ToArray();
 
             Dictionary<string, List<string>> order = new Dictionary<string, List<string>>();
 

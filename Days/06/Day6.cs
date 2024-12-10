@@ -9,7 +9,7 @@ namespace AdventOfCode
 
         public int RunPart(int part)
         {
-            string[] input = File.ReadLines("../../../Days/6/InputPart1.txt").ToArray();
+            string[] input = File.ReadLines("../../../Days/06/InputPart1.txt").ToArray();
             int rows = input.Length;
             int cols = input[0].Length;
 

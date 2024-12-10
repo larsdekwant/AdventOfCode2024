@@ -12,7 +12,7 @@ namespace AdventOfCode
 
         public int RunPart(int part)
         {
-            string[] puzzle = File.ReadLines("../../../Days/4/InputPart1.txt").ToArray();
+            string[] puzzle = File.ReadLines("../../../Days/04/InputPart1.txt").ToArray();
             int rows = puzzle.Length;
             int cols = puzzle[0].Length;
 

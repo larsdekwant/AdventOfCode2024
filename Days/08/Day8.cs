@@ -7,7 +7,7 @@ namespace AdventOfCode
     {
         public int RunPart(int part)
         {
-            string[] input = File.ReadLines("../../../Days/8/InputPart1.txt").ToArray();
+            string[] input = File.ReadLines("../../../Days/08/InputPart1.txt").ToArray();
             int rows = input.Length;
             int cols = input[0].Length;
 

@@ -7,7 +7,7 @@ namespace AdventOfCode
 
         public int RunPart(int part)
         {
-            var lines = File.ReadLines($"../../../Days/2/InputPart{part}.txt");
+            var lines = File.ReadLines($"../../../Days/02/InputPart{part}.txt");
 
             int count = 0;
             foreach (var line in lines)

@@ -6,7 +6,7 @@ namespace AdventOfCode
     {
         public long RunPart(int part)
         {
-            string input = File.ReadAllText("../../../Days/9/InputPart1.txt");
+            string input = File.ReadAllText("../../../Days/09/InputPart1.txt");
 
             List<DiskSpace> filesystem = new List<DiskSpace>();
 

@@ -6,7 +6,7 @@ namespace AdventOfCode
     {
         public int RunPart(int part)
         {
-            var lines = File.ReadLines($"../../../Days/1/InputPart{part}.txt");
+            var lines = File.ReadLines($"../../../Days/01/InputPart{part}.txt");
 
             List<int> left = new List<int>();
             List<int> right = new List<int>();

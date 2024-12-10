@@ -7,7 +7,7 @@ namespace AdventOfCode
     {
         public long RunPart(int part)
         {
-            var input = File.ReadLines("../../../Days/7/InputPart1.txt");
+            var input = File.ReadLines("../../../Days/07/InputPart1.txt");
 
             Func<long, long, long>[] operators = part switch
             {
