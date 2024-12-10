@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            IDay<long> day = new Day9();
+            IDay<int> day = new Day10();
             Console.WriteLine(day.RunPart(1));
             Console.WriteLine(day.RunPart(2));
         }
