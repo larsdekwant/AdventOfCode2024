@@ -27,18 +27,16 @@ namespace AdventOfCode
                     }
                 }
 
-            int total = 0;
-            foreach (var start in starts)
+            // Get trail tails for every trail head in parallel since they are independent, and sum results.
+            return starts.AsParallel().Sum(start =>
             {
-                total += part switch
+                return part switch
                 {
                     1 => GetTrailTails(map, start).Distinct().Count(),
                     2 => GetTrailTails(map, start).Count,
                     _ => throw new ArgumentException("Not a valid part")
                 };
-            }
-
-            return total;
+            });           
         }
 
         // Returns all the trail tails (not unique) from all possible trail paths that are reachable from start.
