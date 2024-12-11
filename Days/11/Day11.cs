@@ -19,6 +19,7 @@ namespace AdventOfCode
                 _ => throw new ArgumentException("Not a valid part")
             };
 
+            // Can count for each stone individually, since they are not dependent on stones in front or behind.
             long total = 0;
             foreach (string num in input.Split(' ', StringSplitOptions.RemoveEmptyEntries))
             {
@@ -32,10 +33,7 @@ namespace AdventOfCode
         private long CountStones(long stone, int blinks)
         {
             // If this stone has been seen before for this amount of remaining blinks, return its stored value.
-            if(KnownStones.TryGetValue((stone, blinks), out long total))
-            {
-                return total;
-            }
+            if (KnownStones.TryGetValue((stone, blinks), out long total)) return total;
 
             long count;
             int digits;
@@ -44,10 +42,7 @@ namespace AdventOfCode
             if (blinks == 0) count = 1;
 
             // Rule 1
-            else if(stone == 0)
-            {
-                count = CountStones(1, blinks - 1);
-            }
+            else if (stone == 0) count = CountStones(1, blinks - 1);           
 
             // Rule 2
             else if ((digits = (int)Math.Floor(Math.Log10(stone) + 1)) % 2 == 0)
@@ -60,10 +55,7 @@ namespace AdventOfCode
             }
 
             // Rule 3
-            else
-            {
-                count = CountStones(stone * 2024, blinks - 1);
-            }
+            else count = CountStones(stone * 2024, blinks - 1);          
 
             // Store the count in the known values map for future use.
             KnownStones.Add((stone, blinks), count);
