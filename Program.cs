@@ -1,10 +1,13 @@
-﻿namespace AdventOfCode
+﻿using System.Diagnostics;
+
+namespace AdventOfCode
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            IDay<int> day = new Day10();
+            IDay<long> day = new Day11();            
+
             Console.WriteLine(day.RunPart(1));
             Console.WriteLine(day.RunPart(2));
         }
