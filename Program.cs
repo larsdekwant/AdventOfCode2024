@@ -6,7 +6,7 @@ namespace AdventOfCode
     {
         static void Main(string[] args)
         {
-            IDay<long> day = new Day11();            
+            IDay<int> day = new Day12();            
 
             Console.WriteLine(day.RunPart(1));
             Console.WriteLine(day.RunPart(2));
