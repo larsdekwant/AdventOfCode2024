@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 
 namespace AdventOfCode
 {
@@ -6,7 +7,7 @@ namespace AdventOfCode
     {
         static void Main(string[] args)
         {
-            IDay<int> day = new Day12();
+            IDay<long> day = new Day13();
             Console.WriteLine(day.RunPart(1));
             Console.WriteLine(day.RunPart(2));
 

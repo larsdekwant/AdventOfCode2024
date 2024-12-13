@@ -8,4 +8,8 @@
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Google.OrTools" Version="9.11.4210" />
+  </ItemGroup>
+
 </Project>
