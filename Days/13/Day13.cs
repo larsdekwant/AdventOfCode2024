@@ -29,7 +29,7 @@ namespace AdventOfCode
                 // ILP solver
                 Solver solver = Solver.CreateSolver("SCIP");
 
-                // Add the variables: A, B >= 0 and integer
+                // Add the integer!! variables: A, B >= 0
                 Variable A = solver.MakeIntVar(0.0, double.PositiveInfinity, "A");
                 Variable B = solver.MakeIntVar(0.0, double.PositiveInfinity, "B");
 
@@ -38,7 +38,6 @@ namespace AdventOfCode
                 // A * y_1 + B * y_2 = y_goal
                 solver.Add(c_A[0] * A + c_B[0] * B == goal[0] + error);
                 solver.Add(c_A[1] * A + c_B[1] * B == goal[1] + error);
-                //solver.Add(int.Parse(valsA[2]) * A + int.Parse(valsB[2]) * B == int.Parse(valsP[2]) + error);
 
                 // Objective to optimize
                 solver.Minimize(3 * A + B);
