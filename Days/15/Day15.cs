@@ -80,6 +80,7 @@ namespace AdventOfCode
                     return false;
 
                 case Tile.Empty:
+                    // Move
                     map[next.x, next.y] = map[p.x, p.y];
                     map[p.x, p.y] = Tile.Empty;
                     return true;
@@ -160,7 +161,8 @@ namespace AdventOfCode
                     if (MoveWide(map, left, v) && MoveWide(map, next, v)) return MoveWide(map, p, v);
                     return false;
 
-                case WideTile.Empty:                  
+                case WideTile.Empty:
+                    // Move
                     map[next.x, next.y] = map[p.x, p.y];
                     map[p.x, p.y] = WideTile.Empty;                   
                     return true;
