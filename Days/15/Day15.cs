@@ -40,7 +40,6 @@ namespace AdventOfCode
             for (int y = 0; y < rows; y++)
                 for (int x = 0; x < cols; x++)
                 {
-                    if (input[y] == "") break;
                     map[x, y] = input[y][x] switch
                     {
                         '.' => Tile.Empty,
@@ -55,10 +54,8 @@ namespace AdventOfCode
             // Parse inputs and perform movements
             foreach ((int x, int y) dir in string.Join("", input[(rows + 1)..]).Select(move => Dir[move]))
             {
-                if (Move(map, robot, dir))
-                {
-                    robot = (robot.x + dir.x, robot.y + dir.y);
-                }
+                if (Move(map, robot, dir))               
+                    robot = (robot.x + dir.x, robot.y + dir.y);              
             }
 
             return ComputeBoxGPSCoordinates(map);
@@ -68,7 +65,6 @@ namespace AdventOfCode
         private bool Move(Tile[,] map, (int x, int y) p, (int dx, int dy) v)
         {
             (int x, int y) next = (p.x + v.dx, p.y + v.dy);           
-
             switch(map[next.x, next.y])
             {
                 case Tile.Wall:
@@ -114,8 +110,6 @@ namespace AdventOfCode
             for (int y = 0; y < rows; y++)
                 for (int x = 0; x < cols; x++)
                 {
-                    if (input[y] == "") break;
-
                     WideTile tile = input[y][x] switch
                     {
                         '.' => WideTile.Empty,
