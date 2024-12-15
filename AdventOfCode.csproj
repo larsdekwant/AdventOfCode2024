@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <PackageReference Include="Google.OrTools" Version="9.11.4210" />
-    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>

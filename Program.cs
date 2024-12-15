@@ -7,7 +7,7 @@ namespace AdventOfCode
     {
         static void Main(string[] args)
         {
-            IDay<int> day = new Day14();
+            IDay<int> day = new Day15();
             Console.WriteLine(day.RunPart(1));
             Console.WriteLine(day.RunPart(2));
 
