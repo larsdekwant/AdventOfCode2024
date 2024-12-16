@@ -8,6 +8,8 @@ namespace AdventOfCode
     class Day16 : IDay<int>
     {
         private const char WALL  = '#';
+        private const char END   = 'E';
+        private const char START = 'S';
 
         private readonly static (int x, int y)[] CardinalDirections = [(0, -1), (1, 0), (0, 1), (-1, 0)];
 
@@ -26,8 +28,8 @@ namespace AdventOfCode
                 for (int x = 0; x < cols; x++)
                 {
                     map[x, y] = input[y][x];                  
-                    if (input[y][x] == 'S') start = (x, y);
-                    if (input[y][x] == 'E') end   = (x, y);
+                    if (input[y][x] == START) start = (x, y);
+                    if (input[y][x] == END)   end   = (x, y);
                 }
 
             var output = DijkstraShortestPath(map, start, (1,0));
@@ -71,7 +73,8 @@ namespace AdventOfCode
             // Perform the search algorithm.
             while (queue.Count > 0)
             {
-                ((int, int) p, (int, int) v) = queue.Dequeue();                
+                ((int x, int y) p, (int, int) v) = queue.Dequeue();
+                if (map[p.x, p.y] == END) break;
                 if (visited.Contains((p,v))) continue;
                 visited.Add((p,v));
 
