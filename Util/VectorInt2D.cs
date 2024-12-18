@@ -7,12 +7,12 @@ namespace AdventOfCode
         public int X { get; set; }
         public int Y { get; set; }
 
-        public static VectorInt2D EMPTY = new VectorInt2D(0, 0);
+        public static readonly VectorInt2D EMPTY = new VectorInt2D(0, 0);
 
-        public static VectorInt2D UP    = new VectorInt2D(0, -1);
-        public static VectorInt2D RIGHT = new VectorInt2D(1,  0);
-        public static VectorInt2D DOWN  = new VectorInt2D(0,  1);
-        public static VectorInt2D LEFT  = new VectorInt2D(-1, 0);
+        public static readonly VectorInt2D UP    = new VectorInt2D(0, -1);
+        public static readonly VectorInt2D RIGHT = new VectorInt2D(1,  0);
+        public static readonly VectorInt2D DOWN  = new VectorInt2D(0,  1);
+        public static readonly VectorInt2D LEFT  = new VectorInt2D(-1, 0);
 
         public static readonly VectorInt2D[] CardinalDirections = [UP, RIGHT, DOWN, LEFT];
 
