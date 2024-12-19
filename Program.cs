@@ -7,16 +7,16 @@ namespace AdventOfCode
     {
         static void Main(string[] args)
         {
-            IDay<string> day = new Day18();
+            IDay<long> day = new Day19();
             Console.WriteLine(day.RunPart(1));
             Console.WriteLine(day.RunPart(2));
 
-            //int runs = 1000;
+            //int runs = 10;
 
             //Stopwatch sw = Stopwatch.StartNew();
             //for (int i = 0; i < runs; i++)
             //{
-            //    IDay<int> day = new Day12();
+            //    IDay<long> day = new Day19();
 
             //    day.RunPart(1);
             //    day.RunPart(2);
